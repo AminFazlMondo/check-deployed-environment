@@ -18,7 +18,7 @@ async function run(): Promise<void> {
 function getParsedInput(): ParsedInput {
   const environment = getInput('environment', {required: true})
   info(`Parsed Input [environment]: ${environment}`)
-  const commitSha = getInput('commit_sha', {required: false}) || context.ref
+  const commitSha = getInput('commit_sha', {required: false}) || context.sha
   info(`Parsed Input [commitSha]: ${commitSha}`)
   const token = getInput('github_token', {required: false}) || (process.env.GITHUB_TOKEN as string)
 
