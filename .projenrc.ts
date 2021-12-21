@@ -43,7 +43,7 @@ const project = new typescript.TypeScriptProject({
   },
 })
 
-project.postCompileTask.exec('ncc build --source-map --out action/index.js')
+project.postCompileTask.exec('ncc build --source-map --out action')
 
 new TextFile(project, '.nvmrc', {
   lines: [nodeVersion],

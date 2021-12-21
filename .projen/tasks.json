@@ -119,7 +119,7 @@
       "description": "Runs after successful compilation",
       "steps": [
         {
-          "exec": "ncc build --source-map --out action/index.js"
+          "exec": "ncc build --source-map --out action"
         }
       ]
     },
