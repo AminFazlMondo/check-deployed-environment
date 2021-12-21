@@ -116,7 +116,12 @@
     },
     "post-compile": {
       "name": "post-compile",
-      "description": "Runs after successful compilation"
+      "description": "Runs after successful compilation",
+      "steps": [
+        {
+          "exec": "ncc build --source-map --out action/index.js"
+        }
+      ]
     },
     "pre-compile": {
       "name": "pre-compile",

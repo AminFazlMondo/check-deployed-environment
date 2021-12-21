@@ -27,6 +27,7 @@ const project = new typescript.TypeScriptProject({
   ],
   devDeps: [
     '@types/babel__core',
+    '@vercel/ncc',
   ],
   workflowNodeVersion: nodeVersion,
   depsUpgradeOptions: {
@@ -35,9 +36,14 @@ const project = new typescript.TypeScriptProject({
   publishTasks: false,
   jest: false,
   sampleCode: false,
+  tsconfig: {
+    compilerOptions: {
+      target: 'es6',
+    },
+  },
 })
 
-project.gitignore.include('/lib')
+project.postCompileTask.exec('ncc build --source-map --out action/index.js')
 
 new TextFile(project, '.nvmrc', {
   lines: [nodeVersion],
@@ -73,7 +79,7 @@ new YamlFile(project, 'action.yml', {
     },
     runs: {
       using: 'node12',
-      main: 'lib/index.js',
+      main: 'action/index.js',
     },
   },
 })

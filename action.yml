@@ -25,4 +25,4 @@ outputs:
       specified environment
 runs:
   using: node12
-  main: lib/index.js
+  main: action/index.js
