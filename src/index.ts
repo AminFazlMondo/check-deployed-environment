@@ -1,19 +1,24 @@
-import {getInput, setOutput, info} from '@actions/core'
+import {getInput, setOutput, info, error, setFailed} from '@actions/core'
 import {context, getOctokit} from '@actions/github'
 import {DeploymentInfo, ParsedInput, QueryResponse} from './types'
 
 async function run(): Promise<void> {
-  const input = getParsedInput()
-  const deployments = await getLatestDeployments(input)
-  info(`Query Response: ${JSON.stringify(deployments)}`)
-  const result = hasActiveDeployment(input.commitId, deployments)
-  setOutput('has_active_deployment', result)
+  try {
+    const input = getParsedInput()
+    const deployments = await getLatestDeployments(input)
+    info(`Query Response: ${JSON.stringify(deployments)}`)
+    const result = hasActiveDeployment(input.commitId, deployments)
+    setOutput('has_active_deployment', result)
+  } catch (err) {
+    error(JSON.stringify(err))
+    setFailed('Failed to check the deployments for environment')
+  }
 }
 
 function getParsedInput(): ParsedInput {
   const environment = getInput('environment', {required: true})
   info(`Parsed Input [environment]: ${environment}`)
-  const commitId = getInput('commit_id', {required: false}) || context.sha
+  const commitId = getInput('commit_id', {required: false}) || context.ref
   info(`Parsed Input [commitId]: ${commitId}`)
   const token = getInput('github_token', {required: false}) || (process.env.GITHUB_TOKEN as string)
 
