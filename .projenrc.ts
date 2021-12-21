@@ -72,7 +72,7 @@ new YamlFile(project, 'action.yml', {
       },
     },
     runs: {
-      using: 'node14',
+      using: 'node12',
       main: 'lib/index.js',
     },
   },
