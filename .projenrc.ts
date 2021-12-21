@@ -67,8 +67,8 @@ new YamlFile(project, 'action.yml', {
         description: 'The GitHub token (if not provided, the environment variable GITHUB_TOKEN will be used instead)',
         required: false,
       },
-      commit_id: {
-        description: 'The abbreviated commit Id to check and see if it is active (if not provided, the current commit id will be used)',
+      commit_sha: {
+        description: 'The commit sha to check and see if it is active (if not provided, the current commit id will be used)',
         required: false,
       },
     },

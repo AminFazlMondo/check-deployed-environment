@@ -1,6 +1,6 @@
 export interface ParsedInput {
     environment: string;
-    commitId: string;
+    commitSha: string;
     token: string;
 }
 export interface QueryResponse {
@@ -11,8 +11,6 @@ export interface QueryResponse {
     };
 }
 export interface DeploymentInfo {
-    commit: {
-        abbreviatedOid: string;
-    };
+    commitOid: string;
     state: string;
 }

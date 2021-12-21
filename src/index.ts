@@ -7,7 +7,7 @@ async function run(): Promise<void> {
     const input = getParsedInput()
     const deployments = await getLatestDeployments(input)
     info(`Query Response: ${JSON.stringify(deployments)}`)
-    const result = hasActiveDeployment(input.commitId, deployments)
+    const result = hasActiveDeployment(input.commitSha, deployments)
     setOutput('has_active_deployment', result)
   } catch (err) {
     error(JSON.stringify(err))
@@ -18,13 +18,13 @@ async function run(): Promise<void> {
 function getParsedInput(): ParsedInput {
   const environment = getInput('environment', {required: true})
   info(`Parsed Input [environment]: ${environment}`)
-  const commitId = getInput('commit_id', {required: false}) || context.ref
-  info(`Parsed Input [commitId]: ${commitId}`)
+  const commitSha = getInput('commit_sha', {required: false}) || context.ref
+  info(`Parsed Input [commitSha]: ${commitSha}`)
   const token = getInput('github_token', {required: false}) || (process.env.GITHUB_TOKEN as string)
 
   return {
     environment,
-    commitId,
+    commitSha,
     token,
   }
 }
@@ -34,9 +34,7 @@ query deployDetails($owner: String!, $name: String!, $environment: String!) {
   repository(owner: $owner, name: $name) {
     deployments(environments: [$environment], first: 2, orderBy: {field: CREATED_AT, direction: DESC}) {
       nodes {
-        commit {
-          abbreviatedOid
-        }
+        commitOid
         state
       }
     }
@@ -55,19 +53,19 @@ async function getLatestDeployments(input: ParsedInput): Promise<DeploymentInfo[
   return response.repository.deployments.nodes
 }
 
-function hasActiveDeployment(commitId: string, deployments: DeploymentInfo[]): boolean {
+function hasActiveDeployment(commitSha: string, deployments: DeploymentInfo[]): boolean {
   if (deployments.length === 0)
     return false
 
   const latest = deployments.shift()
-  if (latest && latest.commit.abbreviatedOid === commitId && latest.state === 'ACTIVE')
+  if (latest && latest.commitOid === commitSha && latest.state === 'ACTIVE')
     return true
 
   const secondLast = deployments.shift()
   if (latest && secondLast)
     return (
-      latest.commit.abbreviatedOid === commitId &&
-      secondLast.commit.abbreviatedOid === commitId &&
+      latest.commitOid === commitSha &&
+      secondLast.commitOid === commitSha &&
       latest.state === 'IN_PROGRESS' &&
       secondLast.state === 'ACTIVE')
 
