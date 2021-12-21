@@ -41,6 +41,7 @@ async function getLatestDeployments(input: ParsedInput): Promise<DeploymentInfo[
   const response = await octokit.graphql<QueryResponse>(query, {
     owner: context.repo.owner,
     name: context.repo.repo,
+    environment: input.environment,
   })
 
   return response.repository.deployments.nodes
