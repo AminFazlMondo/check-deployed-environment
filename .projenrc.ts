@@ -41,6 +41,7 @@ const project = new typescript.TypeScriptProject({
       target: 'es6',
     },
   },
+  majorVersion: 1,
 })
 
 project.postCompileTask.exec('ncc build --source-map --out action')
