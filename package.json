@@ -28,7 +28,7 @@
     "organization": false
   },
   "devDependencies": {
-    "@types/babel__core": "^7.1.17",
+    "@types/babel__core": "^7.1.18",
     "@types/node": "^12",
     "@typescript-eslint/eslint-plugin": "^5",
     "@typescript-eslint/parser": "^5",
@@ -36,10 +36,10 @@
     "eslint": "^8",
     "eslint-import-resolver-node": "^0.3.6",
     "eslint-import-resolver-typescript": "^2.5.0",
-    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-import": "^2.25.4",
     "json-schema": "^0.4.0",
     "npm-check-updates": "^12",
-    "projen": "^0.45.3",
+    "projen": "^0.50.6",
     "standard-version": "^9",
     "ts-node": "^9",
     "typescript": "^4.5.4"
@@ -48,7 +48,6 @@
     "@actions/core": "^1.6.0",
     "@actions/github": "^5.0.0"
   },
-  "bundledDependencies": [],
   "keywords": [
     "Action",
     "Deploy",
