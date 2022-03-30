@@ -30,9 +30,6 @@ const project = new typescript.TypeScriptProject({
     '@vercel/ncc',
   ],
   workflowNodeVersion: nodeVersion,
-  depsUpgradeOptions: {
-    ignoreProjen: false,
-  },
   publishTasks: false,
   jest: false,
   sampleCode: false,
