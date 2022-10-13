@@ -1,6 +1,6 @@
 import {typescript, javascript, TextFile, YamlFile} from 'projen'
 
-const nodeVersion = '14.18.1'
+const nodeVersion = '16'
 const authorName = 'Amin Fazl'
 
 const project = new typescript.TypeScriptProject({
