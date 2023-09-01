@@ -2,7 +2,6 @@ import {typescript, javascript, TextFile, YamlFile} from 'projen'
 
 const nodeVersion = '16'
 const authorName = 'Amin Fazl'
-const majorVersion = 1
 
 const project = new typescript.TypeScriptProject({
   name: 'check-deployed-environment',
@@ -39,7 +38,7 @@ const project = new typescript.TypeScriptProject({
       target: 'es6',
     },
   },
-  majorVersion,
+  majorVersion: 1,
   autoApproveOptions: {
     allowedUsernames: ['AminFazlMondo'],
   },
@@ -47,11 +46,6 @@ const project = new typescript.TypeScriptProject({
 })
 
 project.postCompileTask.exec('ncc build --source-map --out action')
-
-project.release?.publisher.addGitHubPostPublishingSteps({
-  name: 'Moving tag',
-  run: `git tag -fa v${majorVersion} && git push origin --force --tags`,
-})
 
 new TextFile(project, '.nvmrc', {
   lines: [nodeVersion],
