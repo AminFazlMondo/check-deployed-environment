@@ -80,7 +80,7 @@ new YamlFile(project, 'action.yml', {
       },
     },
     runs: {
-      using: 'node12',
+      using: 'node16',
       main: 'action/index.js',
     },
   },
