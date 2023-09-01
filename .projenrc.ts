@@ -2,6 +2,7 @@ import {typescript, javascript, TextFile, YamlFile} from 'projen'
 
 const nodeVersion = '16'
 const authorName = 'Amin Fazl'
+const majorVersion = 1
 
 const project = new typescript.TypeScriptProject({
   name: 'check-deployed-environment',
@@ -38,7 +39,7 @@ const project = new typescript.TypeScriptProject({
       target: 'es6',
     },
   },
-  majorVersion: 1,
+  majorVersion,
   autoApproveOptions: {
     allowedUsernames: ['AminFazlMondo'],
   },
@@ -46,6 +47,16 @@ const project = new typescript.TypeScriptProject({
 })
 
 project.postCompileTask.exec('ncc build --source-map --out action')
+
+project.release?.publisher.addGitHubPostPublishingSteps({
+  name: 'Moving tag',
+  env: {
+    GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}',
+    GITHUB_REPOSITORY: '${{ github.repository }}',
+    GITHUB_REF: '${{ github.ref }}',
+  },
+  run: `gh release edit v${majorVersion} -R $GITHUB_REPOSITORY --target $GITHUB_REF`,
+})
 
 new TextFile(project, '.nvmrc', {
   lines: [nodeVersion],
