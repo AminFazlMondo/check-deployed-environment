@@ -20,5 +20,5 @@ outputs:
   has_active_deployment:
     description: True/False to represent if the commit has active deployment for the specified environment
 runs:
-  using: node16
+  using: node20
   main: action/index.js
