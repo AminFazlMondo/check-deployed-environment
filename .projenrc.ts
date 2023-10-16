@@ -1,6 +1,6 @@
 import {typescript, javascript, TextFile, YamlFile} from 'projen'
 
-const nodeVersion = '16'
+const nodeVersion = '20'
 const authorName = 'Amin Fazl'
 const majorVersion = 1
 
@@ -91,7 +91,7 @@ new YamlFile(project, 'action.yml', {
       },
     },
     runs: {
-      using: 'node16',
+      using: 'node20',
       main: 'action/index.js',
     },
   },
