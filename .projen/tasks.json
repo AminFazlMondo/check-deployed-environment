@@ -220,13 +220,13 @@
           "exec": "npm update npm-check-updates"
         },
         {
-          "exec": "npm-check-updates --upgrade --target=minor --peer --dep=dev,peer,prod,optional --filter=@types/babel__core,@types/node,@typescript-eslint/eslint-plugin,@typescript-eslint/parser,@vercel/ncc,eslint-import-resolver-node,eslint-import-resolver-typescript,eslint-plugin-import,eslint,npm-check-updates,projen,standard-version,ts-node,typescript,@actions/core,@actions/github"
+          "exec": "npm-check-updates --upgrade --target=minor --peer --dep=dev,peer,prod,optional --filter=@types/babel__core,@types/node,@typescript-eslint/eslint-plugin,@typescript-eslint/parser,@vercel/ncc,constructs,eslint-import-resolver-node,eslint-import-resolver-typescript,eslint-plugin-import,eslint,npm-check-updates,projen,standard-version,ts-node,typescript,@actions/core,@actions/github"
         },
         {
           "exec": "npm install"
         },
         {
-          "exec": "npm update @types/babel__core @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser @vercel/ncc eslint-import-resolver-node eslint-import-resolver-typescript eslint-plugin-import eslint npm-check-updates projen standard-version ts-node typescript @actions/core @actions/github"
+          "exec": "npm update @types/babel__core @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser @vercel/ncc constructs eslint-import-resolver-node eslint-import-resolver-typescript eslint-plugin-import eslint npm-check-updates projen standard-version ts-node typescript @actions/core @actions/github"
         },
         {
           "exec": "npx projen"
