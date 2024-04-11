@@ -42,7 +42,7 @@
     "projen": "^0.80.20",
     "standard-version": "^9",
     "ts-node": "^10.9.2",
-    "typescript": "^5.4.4"
+    "typescript": "^5.4.5"
   },
   "dependencies": {
     "@actions/core": "^1.10.1",
