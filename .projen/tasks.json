@@ -32,7 +32,8 @@
         "CHANGELOG": "dist/changelog.md",
         "BUMPFILE": "dist/version.txt",
         "RELEASETAG": "dist/releasetag.txt",
-        "RELEASE_TAG_PREFIX": ""
+        "RELEASE_TAG_PREFIX": "",
+        "BUMP_PACKAGE": "commit-and-tag-version@^12"
       },
       "steps": [
         {
@@ -202,7 +203,8 @@
         "CHANGELOG": "dist/changelog.md",
         "BUMPFILE": "dist/version.txt",
         "RELEASETAG": "dist/releasetag.txt",
-        "RELEASE_TAG_PREFIX": ""
+        "RELEASE_TAG_PREFIX": "",
+        "BUMP_PACKAGE": "commit-and-tag-version@^12"
       },
       "steps": [
         {
@@ -224,7 +226,7 @@
           "exec": "npm install"
         },
         {
-          "exec": "npm update @types/babel__core @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser @vercel/ncc constructs eslint-import-resolver-typescript eslint-plugin-import eslint projen standard-version ts-node typescript @actions/core @actions/github"
+          "exec": "npm update @types/babel__core @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser @vercel/ncc commit-and-tag-version constructs eslint-import-resolver-typescript eslint-plugin-import eslint projen ts-node typescript @actions/core @actions/github"
         },
         {
           "exec": "npx projen"
