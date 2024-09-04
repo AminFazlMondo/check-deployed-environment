@@ -44,6 +44,7 @@ const project = new typescript.TypeScriptProject({
     allowedUsernames: ['AminFazlMondo'],
   },
   autoApproveUpgrades: true,
+  releaseFailureIssue: true,
 })
 
 project.postCompileTask.exec('ncc build --source-map --out action')

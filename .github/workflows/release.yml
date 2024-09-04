@@ -50,7 +50,7 @@ jobs:
         continue-on-error: true
       - name: Upload artifact
         if: ${{ steps.git_remote.outputs.latest_commit == github.sha }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v4.3.6
         with:
           name: build-artifact
           path: dist
@@ -61,6 +61,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      issues: write
     if: needs.release.outputs.tag_exists != 'true' && needs.release.outputs.latest_commit == github.sha
     steps:
       - uses: actions/setup-node@v4
@@ -86,3 +87,16 @@ jobs:
           GITHUB_REPOSITORY: ${{ github.repository }}
           GITHUB_REF: ${{ github.ref }}
         run: gh release edit v1 -R $GITHUB_REPOSITORY --target $GITHUB_REF
+      - name: Extract Version
+        id: extract-version
+        if: ${{ failure() }}
+        run: echo "VERSION=$(cat dist/version.txt)" >> $GITHUB_OUTPUT
+      - name: Create Issue
+        if: ${{ failure() }}
+        uses: imjohnbo/issue-bot@v3
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          labels: failed-release
+          title: Publishing v${{ steps.extract-version.outputs.VERSION }} to GitHub Releases failed
+          body: See https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
