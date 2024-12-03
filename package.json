@@ -41,7 +41,7 @@
     "eslint": "^9",
     "eslint-import-resolver-typescript": "^3.6.3",
     "eslint-plugin-import": "^2.31.0",
-    "projen": "^0.90.5",
+    "projen": "^0.90.6",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.2"
   },
