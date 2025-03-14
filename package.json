@@ -39,7 +39,7 @@
     "commit-and-tag-version": "^12",
     "constructs": "^10.0.0",
     "eslint": "^9",
-    "eslint-import-resolver-typescript": "^3.8.6",
+    "eslint-import-resolver-typescript": "^3.8.7",
     "eslint-plugin-import": "^2.31.0",
     "projen": "^0.91.14",
     "ts-node": "^10.9.2",
