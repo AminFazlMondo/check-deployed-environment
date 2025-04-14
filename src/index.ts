@@ -7,8 +7,10 @@ async function run(): Promise<void> {
     const input = getParsedInput()
     const deployments = await getLatestDeployments(input)
     info(`Query Response: ${JSON.stringify(deployments)}`)
-    const result = hasActiveDeployment(input.commitSha, deployments)
+    const result = hasDeployment(input, deployments)
+    // deprecated, to be removed
     setOutput('has_active_deployment', result)
+    setOutput('has_deployment', result)
   } catch (err) {
     error(JSON.stringify(err))
     setFailed('Failed to check the deployments for environment')
@@ -20,19 +22,24 @@ function getParsedInput(): ParsedInput {
   info(`Parsed Input [environment]: ${environment}`)
   const commitSha = getInput('commit_sha', {required: false}) || context.sha
   info(`Parsed Input [commitSha]: ${commitSha}`)
+  const maxHistorySize = getInput('max_history_size', {required: false}) || 2
+  info(`Parsed Input [maxHistorySize]: ${commitSha}`)
+  const isActiveDeployment = getInput('is_active_deployment', {required: false}) || true
+  info(`Parsed Input [isActiveDeployment]: ${isActiveDeployment}`)
   const token = getInput('github_token', {required: false}) || (process.env.GITHUB_TOKEN as string)
 
   return {
-    environment,
-    commitSha,
-    token,
-  }
+      environment,
+      commitSha,
+      token,
+      maxHistorySize,
+      isActiveDeployment,
 }
 
 const query = `
-query deployDetails($owner: String!, $name: String!, $environment: String!) {
+query deployDetails($owner: String!, $name: String!, $environment: String!, $maxHistorySize: Int!,) {
   repository(owner: $owner, name: $name) {
-    deployments(environments: [$environment], first: 2, orderBy: {field: CREATED_AT, direction: DESC}) {
+    deployments(environments: [$environment], first: $maxHistorySize, orderBy: {field: CREATED_AT, direction: DESC}) {
       nodes {
         commitOid
         state
@@ -48,26 +55,21 @@ async function getLatestDeployments(input: ParsedInput): Promise<DeploymentInfo[
     owner: context.repo.owner,
     name: context.repo.repo,
     environment: input.environment,
+    maxHistorySize: input.maxHistorySize,
   })
 
   return response.repository.deployments.nodes
 }
 
-function hasActiveDeployment(commitSha: string, deployments: DeploymentInfo[]): boolean {
-  if (deployments.length === 0)
-    return false
-
-  const latest = deployments.shift()
-  if (latest && latest.commitOid === commitSha && latest.state === 'ACTIVE')
-    return true
-
-  const secondLast = deployments.shift()
-  if (latest && secondLast)
-    return (
-      latest.commitOid === commitSha &&
-      secondLast.commitOid === commitSha &&
-      latest.state === 'IN_PROGRESS' &&
-      secondLast.state === 'ACTIVE')
+function hasDeployment(input: ParsedInput, deployments: DeploymentInfo[]): boolean {
+  for (const deployment of deployments) {
+    if (deployment.commitOid === input.commitSha) {
+      if (input.isActiveDeployment){
+        return deployment.state === 'ACTIVE'
+      }
+      return true
+    }
+  }
 
   return false
 }
