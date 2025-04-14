@@ -38,7 +38,7 @@ jobs:
       with:
         environment: dev
 
-    - if: ${{ steps.deployment-check.outputs.has_active_deployment == true }}
+    - if: ${{ steps.deployment-check.outputs.has_deployment == true }}
       run: echo "actively deployed to the environment"
 ```
 
@@ -60,6 +60,6 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # can use `github_token` input instead
 
-    - if: ${{ steps.deployment-check.outputs.has_active_deployment == true }}
-      run: echo "actively deployed to the environment"
+    - if: ${{ steps.deployment-check.outputs.has_deployment == true }}
+      run: echo "deployed to the environment"
 ```
