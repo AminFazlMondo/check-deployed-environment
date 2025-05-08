@@ -1,8 +1,8 @@
-import {typescript, javascript, TextFile, YamlFile} from 'projen'
+import { typescript, javascript, TextFile, YamlFile } from 'projen';
 
-const nodeVersion = '20'
-const authorName = 'Amin Fazl'
-const majorVersion = 1
+const nodeVersion = '20';
+const authorName = 'Amin Fazl';
+const majorVersion = 1;
 
 const project = new typescript.TypeScriptProject({
   name: 'check-deployed-environment',
@@ -45,9 +45,9 @@ const project = new typescript.TypeScriptProject({
   },
   autoApproveUpgrades: true,
   releaseFailureIssue: true,
-})
+});
 
-project.postCompileTask.exec('ncc build --source-map --out action')
+project.postCompileTask.exec('ncc build --source-map --out action');
 
 project.release?.publisher.addGitHubPostPublishingSteps({
   name: 'Moving tag',
@@ -57,11 +57,11 @@ project.release?.publisher.addGitHubPostPublishingSteps({
     GITHUB_REF: '${{ github.ref }}',
   },
   run: `gh release edit v${majorVersion} -R $GITHUB_REPOSITORY --target $GITHUB_REF`,
-})
+});
 
 new TextFile(project, '.nvmrc', {
   lines: [nodeVersion],
-})
+});
 
 new YamlFile(project, 'action.yml', {
   obj: {
@@ -96,20 +96,6 @@ new YamlFile(project, 'action.yml', {
       main: 'action/index.js',
     },
   },
-})
+});
 
-project.eslint?.addRules({
-  'curly': [
-    'error',
-    'multi',
-    'consistent',
-  ],
-  'semi': [
-    'error',
-    'never',
-  ],
-  'object-curly-spacing': 'error',
-  'nonblock-statement-body-position': ['error', 'below'],
-})
-
-project.synth()
+project.synth();
