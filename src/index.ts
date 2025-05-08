@@ -22,18 +22,19 @@ function getParsedInput(): ParsedInput {
   info(`Parsed Input [environment]: ${environment}`)
   const commitSha = getInput('commit_sha', {required: false}) || context.sha
   info(`Parsed Input [commitSha]: ${commitSha}`)
-  const maxHistorySize = getInput('max_history_size', {required: false}) || 2
+  const maxHistorySize = parseInt(getInput('max_history_size', {required: false})) || 2
   info(`Parsed Input [maxHistorySize]: ${commitSha}`)
-  const isActiveDeployment = getInput('is_active_deployment', {required: false}) || true
+  const isActiveDeployment = JSON.parse(getInput('is_active_deployment', {required: false})) || true
   info(`Parsed Input [isActiveDeployment]: ${isActiveDeployment}`)
   const token = getInput('github_token', {required: false}) || (process.env.GITHUB_TOKEN as string)
 
   return {
-      environment,
-      commitSha,
-      token,
-      maxHistorySize,
-      isActiveDeployment,
+    environment,
+    commitSha,
+    token,
+    maxHistorySize,
+    isActiveDeployment,
+  }
 }
 
 const query = `
@@ -62,14 +63,14 @@ async function getLatestDeployments(input: ParsedInput): Promise<DeploymentInfo[
 }
 
 function hasDeployment(input: ParsedInput, deployments: DeploymentInfo[]): boolean {
-  for (const deployment of deployments) {
+  for (const deployment of deployments)
     if (deployment.commitOid === input.commitSha) {
-      if (input.isActiveDeployment){
+      if (input.isActiveDeployment)
         return deployment.state === 'ACTIVE'
-      }
+
       return true
     }
-  }
+
 
   return false
 }
