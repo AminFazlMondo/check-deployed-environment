@@ -82,13 +82,24 @@ new YamlFile(project, 'action.yml', {
         required: false,
       },
       commit_sha: {
-        description: 'The commit sha to check and see if it is active (if not provided, the current commit id will be used)',
+        description: 'The commit sha to check and see if it has been deployed (if not provided, the current commit id will be used)',
+        required: false,
+      },
+      max_history_size: {
+        description: 'How far in the deployment history should be checked (defaults to 2)',
+        required: false,
+      },
+      is_active_deployment: {
+        description: 'Should commit sha be an active deployment? (defaults to true)',
         required: false,
       },
     },
     outputs: {
       has_active_deployment: {
-        description: 'True/False to represent if the commit has active deployment for the specified environment',
+        description: '(DEPRECATED - use `has_deployment` with `is_active_deployment` flag ) - True/False to represent if the commit has active deployment for the specified environment',
+      },
+      has_deployment: {
+        description: 'True/False to represent if the commit has deployment for the specified environment',
       },
     },
     runs: {

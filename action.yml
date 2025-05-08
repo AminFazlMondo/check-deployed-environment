@@ -20,7 +20,7 @@ inputs:
     description: How far in the deployment history should be checked (defaults to 2)
     required: false
   is_active_deployment:
-    description: Should sha be an active deployment? (defaults to true)
+    description: Should commit sha be an active deployment? (defaults to true)
     required: false
 outputs:
   has_active_deployment:

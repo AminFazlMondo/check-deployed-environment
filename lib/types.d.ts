@@ -2,6 +2,8 @@ export interface ParsedInput {
     environment: string;
     commitSha: string;
     token: string;
+    maxHistorySize: number;
+    isActiveDeployment: boolean;
 }
 export interface QueryResponse {
     repository: {
