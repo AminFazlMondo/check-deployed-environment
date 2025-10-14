@@ -1,4 +1,4 @@
-import { getInput, setOutput, info, error, setFailed } from '@actions/core';
+import { getInput, setOutput, info, error, setFailed, debug, exportVariable } from '@actions/core';
 import { context, getOctokit } from '@actions/github';
 import { DeploymentInfo, ParsedInput, QueryResponse } from './types';
 
@@ -6,12 +6,16 @@ async function run(): Promise<void> {
   try {
     const input = getParsedInput();
     const deployments = await getLatestDeployments(input);
-    info(`Query Response: ${JSON.stringify(deployments)}`);
+    debug(`Query Response: ${JSON.stringify(deployments)}`);
     const result = hasActiveDeployment(input.commitSha, deployments);
     setOutput('has_active_deployment', result);
+    debug(`Has Active Deployment: ${result}`);
+    exportVariable('HAS_ACTIVE_DEPLOYMENT', result);
 
     const currentlyDeployedCommit = getCurrentlyDeployedCommit(deployments);
     setOutput('currently_deployed_commit', currentlyDeployedCommit);
+    debug(`Currently Deployed Commit: ${currentlyDeployedCommit}`);
+    exportVariable('CURRENTLY_DEPLOYED_COMMIT', currentlyDeployedCommit);
   } catch (err) {
     error(JSON.stringify(err));
     setFailed('Failed to check the deployments for environment');
