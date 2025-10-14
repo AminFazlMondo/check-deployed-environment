@@ -85,10 +85,18 @@ new YamlFile(project, 'action.yml', {
         description: 'The commit sha to check and see if it is active (if not provided, the current commit id will be used)',
         required: false,
       },
+      number_of_deployments_to_check: {
+        description: 'The number of latest deployments to check (default is 5)',
+        required: false,
+        default: '5',
+      },
     },
     outputs: {
       has_active_deployment: {
         description: 'True/False to represent if the commit has active deployment for the specified environment',
+      },
+      currently_deployed_commit: {
+        description: 'The commit sha that is currently deployed to the specified environment',
       },
     },
     runs: {

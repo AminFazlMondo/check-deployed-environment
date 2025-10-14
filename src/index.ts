@@ -9,6 +9,9 @@ async function run(): Promise<void> {
     info(`Query Response: ${JSON.stringify(deployments)}`);
     const result = hasActiveDeployment(input.commitSha, deployments);
     setOutput('has_active_deployment', result);
+
+    const currentlyDeployedCommit = getCurrentlyDeployedCommit(deployments);
+    setOutput('currently_deployed_commit', currentlyDeployedCommit);
   } catch (err) {
     error(JSON.stringify(err));
     setFailed('Failed to check the deployments for environment');
@@ -21,18 +24,28 @@ function getParsedInput(): ParsedInput {
   const commitSha = getInput('commit_sha', { required: false }) || context.sha;
   info(`Parsed Input [commitSha]: ${commitSha}`);
   const token = getInput('github_token', { required: false }) || (process.env.GITHUB_TOKEN as string);
+  const numberOfDeploymentsToCheck = getNumberInput('number_of_deployments_to_check') || 5;
+  info(`Parsed Input [numberOfDeploymentsToCheck]: ${numberOfDeploymentsToCheck}`);
 
   return {
     environment,
     commitSha,
     token,
+    numberOfDeploymentsToCheck,
   };
 }
 
+function getNumberInput(name: string): number | undefined {
+  const value = getInput(name, { required: false });
+  const parsed = parseInt(value);
+
+  return isNaN(parsed) ? undefined : parsed;
+}
+
 const query = `
-query deployDetails($owner: String!, $name: String!, $environment: String!) {
+query deployDetails($owner: String!, $name: String!, $environment: String!, $numberOfDeploymentsToCheck: Int!) {
   repository(owner: $owner, name: $name) {
-    deployments(environments: [$environment], first: 2, orderBy: {field: CREATED_AT, direction: DESC}) {
+    deployments(environments: [$environment], first: $numberOfDeploymentsToCheck, orderBy: {field: CREATED_AT, direction: DESC}) {
       nodes {
         commitOid
         state
@@ -48,6 +61,7 @@ async function getLatestDeployments(input: ParsedInput): Promise<DeploymentInfo[
     owner: context.repo.owner,
     name: context.repo.repo,
     environment: input.environment,
+    numberOfDeploymentsToCheck: input.numberOfDeploymentsToCheck,
   });
 
   return response.repository.deployments.nodes;
@@ -56,10 +70,10 @@ async function getLatestDeployments(input: ParsedInput): Promise<DeploymentInfo[
 function hasActiveDeployment(commitSha: string, deployments: DeploymentInfo[]): boolean {
   if (deployments.length === 0) {return false;}
 
-  const latest = deployments.shift();
+  const latest = deployments[0];
   if (latest && latest.commitOid === commitSha && latest.state === 'ACTIVE') {return true;}
 
-  const secondLast = deployments.shift();
+  const secondLast = deployments[1];
   if (latest && secondLast) {
     return (
       latest.commitOid === commitSha &&
@@ -69,6 +83,11 @@ function hasActiveDeployment(commitSha: string, deployments: DeploymentInfo[]): 
   }
 
   return false;
+}
+
+function getCurrentlyDeployedCommit(deployments: DeploymentInfo[]): string {
+  const activeDeployment = deployments.find((d) => d.state === 'ACTIVE');
+  return activeDeployment ? activeDeployment.commitOid : '';
 }
 
 // eslint-disable-next-line @typescript-eslint/no-floating-promises
