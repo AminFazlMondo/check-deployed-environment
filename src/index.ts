@@ -71,7 +71,7 @@ async function getLatestDeployments(input: ParsedInput): Promise<DeploymentInfo[
   return response.repository.deployments.nodes;
 }
 
-function hasActiveDeployment(commitSha: string, deployments: DeploymentInfo[]): boolean {
+export function hasActiveDeployment(commitSha: string, deployments: DeploymentInfo[]): boolean {
   if (deployments.length === 0) {return false;}
 
   const latest = deployments[0];
@@ -89,7 +89,7 @@ function hasActiveDeployment(commitSha: string, deployments: DeploymentInfo[]): 
   return false;
 }
 
-function getCurrentlyDeployedCommit(deployments: DeploymentInfo[]): string {
+export function getCurrentlyDeployedCommit(deployments: DeploymentInfo[]): string {
   const activeDeployment = deployments.find((d) => d.state === 'ACTIVE');
   return activeDeployment ? activeDeployment.commitOid : '';
 }

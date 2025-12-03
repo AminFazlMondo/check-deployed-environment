@@ -1,3 +1,4 @@
+import { hasActiveDeployment, getCurrentlyDeployedCommit } from '../src/index';
 import { DeploymentInfo } from '../src/types';
 
 describe('GitHub Action - Check Deployed Environment', () => {
@@ -5,9 +6,9 @@ describe('GitHub Action - Check Deployed Environment', () => {
     it('should return false when deployments array is empty', () => {
       const deployments: DeploymentInfo[] = [];
       const commitSha = 'abc123';
-
+      
       const result = hasActiveDeployment(commitSha, deployments);
-
+      
       expect(result).toBe(false);
     });
 
@@ -16,9 +17,9 @@ describe('GitHub Action - Check Deployed Environment', () => {
       const deployments: DeploymentInfo[] = [
         { commitOid: 'abc123', state: 'ACTIVE' },
       ];
-
+      
       const result = hasActiveDeployment(commitSha, deployments);
-
+      
       expect(result).toBe(true);
     });
 
@@ -27,9 +28,9 @@ describe('GitHub Action - Check Deployed Environment', () => {
       const deployments: DeploymentInfo[] = [
         { commitOid: 'def456', state: 'ACTIVE' },
       ];
-
+      
       const result = hasActiveDeployment(commitSha, deployments);
-
+      
       expect(result).toBe(false);
     });
 
@@ -39,9 +40,9 @@ describe('GitHub Action - Check Deployed Environment', () => {
         { commitOid: 'abc123', state: 'IN_PROGRESS' },
         { commitOid: 'abc123', state: 'ACTIVE' },
       ];
-
+      
       const result = hasActiveDeployment(commitSha, deployments);
-
+      
       expect(result).toBe(true);
     });
 
@@ -50,9 +51,9 @@ describe('GitHub Action - Check Deployed Environment', () => {
       const deployments: DeploymentInfo[] = [
         { commitOid: 'abc123', state: 'PENDING' },
       ];
-
+      
       const result = hasActiveDeployment(commitSha, deployments);
-
+      
       expect(result).toBe(false);
     });
   });
@@ -63,9 +64,9 @@ describe('GitHub Action - Check Deployed Environment', () => {
         { commitOid: 'abc123', state: 'IN_PROGRESS' },
         { commitOid: 'def456', state: 'PENDING' },
       ];
-
+      
       const result = getCurrentlyDeployedCommit(deployments);
-
+      
       expect(result).toBe('');
     });
 
@@ -75,34 +76,10 @@ describe('GitHub Action - Check Deployed Environment', () => {
         { commitOid: 'def456', state: 'ACTIVE' },
         { commitOid: 'ghi789', state: 'INACTIVE' },
       ];
-
+      
       const result = getCurrentlyDeployedCommit(deployments);
-
+      
       expect(result).toBe('def456');
     });
   });
 });
-
-// Helper functions extracted from src/index.ts for testing
-function hasActiveDeployment(commitSha: string, deployments: DeploymentInfo[]): boolean {
-  if (deployments.length === 0) {return false;}
-
-  const latest = deployments[0];
-  if (latest && latest.commitOid === commitSha && latest.state === 'ACTIVE') {return true;}
-
-  const secondLast = deployments[1];
-  if (latest && secondLast) {
-    return (
-      latest.commitOid === commitSha &&
-      secondLast.commitOid === commitSha &&
-      latest.state === 'IN_PROGRESS' &&
-      secondLast.state === 'ACTIVE');
-  }
-
-  return false;
-}
-
-function getCurrentlyDeployedCommit(deployments: DeploymentInfo[]): string {
-  const activeDeployment = deployments.find((d) => d.state === 'ACTIVE');
-  return activeDeployment ? activeDeployment.commitOid : '';
-}
