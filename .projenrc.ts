@@ -47,7 +47,7 @@ const project = new typescript.TypeScriptProject({
       testMatch: ['**/__tests__/**/*.ts', '**/?(*.)+(spec|test).ts'],
       moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
       collectCoverage: true,
-      coverageReporters: ['json', 'lcov', 'text', 'clover', 'cobertura'],
+      coverageReporters: ['json', 'lcov', 'clover', 'cobertura'],
     },
   },
   sampleCode: false,
