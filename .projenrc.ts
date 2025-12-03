@@ -20,7 +20,7 @@ const project = new typescript.TypeScriptProject({
     'Environment',
   ],
   repository: 'https://github.com/AminFazlMondo/check-deployed-environment.git',
-  packageManager: javascript.NodePackageManager.NPM,
+  packageManager: javascript.NodePackageManager.PNPM,
   npmAccess: javascript.NpmAccess.PUBLIC,
   deps: [
     '@actions/core',
@@ -29,10 +29,27 @@ const project = new typescript.TypeScriptProject({
   devDeps: [
     '@types/babel__core',
     '@vercel/ncc',
+    '@types/node@^20',
+    'jest@^29.7.0',
+    'jest-junit@^16.0.0',
+    'ts-jest@^29.2.5',
+    '@types/jest@^29.5.14',
   ],
   workflowNodeVersion: nodeVersion,
   publishTasks: false,
-  jest: false,
+  jest: true,
+  jestOptions: {
+    jestConfig: {
+      preset: 'ts-jest',
+      testEnvironment: 'node',
+      coverageDirectory: 'coverage',
+      coveragePathIgnorePatterns: ['/node_modules/'],
+      testMatch: ['**/__tests__/**/*.ts', '**/?(*.)+(spec|test).ts'],
+      moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
+      collectCoverage: true,
+      coverageReporters: ['json', 'lcov', 'clover', 'cobertura'],
+    },
+  },
   sampleCode: false,
   tsconfig: {
     compilerOptions: {
@@ -45,6 +62,7 @@ const project = new typescript.TypeScriptProject({
   },
   autoApproveUpgrades: true,
   releaseFailureIssue: true,
+  minNodeVersion: '20.0.0',
 });
 
 project.postCompileTask.exec('ncc build --source-map --out action');
