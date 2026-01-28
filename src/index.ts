@@ -91,7 +91,7 @@ function hasActiveDeployment(commitSha: string, deployments: DeploymentInfo[]): 
 
 function getCurrentlyDeployedCommit(deployments: DeploymentInfo[]): string {
   const activeDeployment = deployments.find((d) => d.state === 'ACTIVE');
-  return activeDeployment ? activeDeployment.commitOid : '';
+  return activeDeployment ? activeDeployment.commitOid : ' ';
 }
 
 // eslint-disable-next-line @typescript-eslint/no-floating-promises
