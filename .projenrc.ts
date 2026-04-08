@@ -20,7 +20,7 @@ const project = new typescript.TypeScriptProject({
     'Environment',
   ],
   repository: 'https://github.com/AminFazlMondo/check-deployed-environment.git',
-  packageManager: javascript.NodePackageManager.NPM,
+  packageManager: javascript.NodePackageManager.PNPM,
   npmAccess: javascript.NpmAccess.PUBLIC,
   deps: [
     '@actions/core',

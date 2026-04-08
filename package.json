@@ -49,6 +49,7 @@
     "@actions/core": "^1.11.1",
     "@actions/github": "^5.1.1"
   },
+  "pnpm": {},
   "keywords": [
     "Action",
     "Deploy",
@@ -59,7 +60,7 @@
   ],
   "devEngines": {
     "packageManager": {
-      "name": "npm",
+      "name": "pnpm",
       "onFail": "ignore"
     }
   },
