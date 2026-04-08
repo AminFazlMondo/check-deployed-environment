@@ -11,6 +11,7 @@
     },
     {
       "name": "@types/node",
+      "version": "^20",
       "type": "build"
     },
     {
@@ -64,10 +65,12 @@
     },
     {
       "name": "@actions/core",
+      "version": "^2.0.3",
       "type": "runtime"
     },
     {
       "name": "@actions/github",
+      "version": "^8.0.1",
       "type": "runtime"
     }
   ],

@@ -20,23 +20,26 @@ const project = new typescript.TypeScriptProject({
     'Environment',
   ],
   repository: 'https://github.com/AminFazlMondo/check-deployed-environment.git',
-  packageManager: javascript.NodePackageManager.NPM,
+  packageManager: javascript.NodePackageManager.PNPM,
   npmAccess: javascript.NpmAccess.PUBLIC,
   deps: [
-    '@actions/core',
-    '@actions/github',
+    '@actions/core@^2.0.3',
+    '@actions/github@^8.0.1',
   ],
   devDeps: [
     '@types/babel__core',
     '@vercel/ncc',
   ],
   workflowNodeVersion: nodeVersion,
+  minNodeVersion: `${nodeVersion}.0.0`,
   publishTasks: false,
   jest: false,
   sampleCode: false,
   tsconfig: {
     compilerOptions: {
-      target: 'es6',
+      skipLibCheck: true,
+      lib: ['es2020'],
+      target: 'es2020',
     },
   },
   majorVersion,
@@ -47,7 +50,13 @@ const project = new typescript.TypeScriptProject({
   releaseFailureIssue: true,
 });
 
-project.postCompileTask.exec('ncc build --source-map --out action');
+project.postCompileTask.exec('ncc', {
+  args: [
+    'build',
+    '--source-map',
+    '--out action',
+  ],
+});
 
 project.release?.publisher.addGitHubPostPublishingSteps({
   name: 'Moving tag',
