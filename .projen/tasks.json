@@ -153,7 +153,12 @@
       "description": "Runs after successful compilation",
       "steps": [
         {
-          "exec": "ncc build --source-map --out action"
+          "exec": "ncc",
+          "args": [
+            "build",
+            "--source-map",
+            "--out action"
+          ]
         }
       ]
     },
@@ -224,7 +229,7 @@
       },
       "steps": [
         {
-          "exec": "pnpm dlx npm-check-updates@18 --upgrade --target=minor --peer --no-deprecated --dep=dev,peer,prod,optional --filter=@types/babel__core,@types/node,@vercel/ncc,eslint-import-resolver-typescript,eslint-plugin-import,projen,ts-node,typescript,@actions/core,@actions/github"
+          "exec": "pnpm dlx npm-check-updates@18 --upgrade --target=minor --peer --no-deprecated --dep=dev,peer,prod,optional --filter=@types/babel__core,@vercel/ncc,eslint-import-resolver-typescript,eslint-plugin-import,projen,ts-node,typescript"
         },
         {
           "exec": "pnpm i --no-frozen-lockfile"
