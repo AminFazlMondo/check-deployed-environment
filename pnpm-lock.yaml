@@ -49,8 +49,8 @@ importers:
         specifier: ^2.32.0
         version: 2.32.0(@typescript-eslint/parser@8.58.1(eslint@9.39.4)(typescript@5.9.3))(eslint-import-resolver-typescript@3.10.1)(eslint@9.39.4)
       projen:
-        specifier: ^0.99.42
-        version: 0.99.42(constructs@10.6.0)
+        specifier: ^0.99.47
+        version: 0.99.47(constructs@10.6.0)
       ts-node:
         specifier: ^10.9.2
         version: 10.9.2(@types/node@20.19.39)(typescript@5.9.3)
@@ -1541,8 +1541,8 @@ packages:
   process-nextick-args@2.0.1:
     resolution: {integrity: sha512-3ouUOpQhtgrbOa17J7+uxOTpITYWaGP7/AhoR3+A+/1e9skrzelGi/dXzEYyvbxubEF6Wn2ypscTKiKJFFn1ag==}
 
-  projen@0.99.42:
-    resolution: {integrity: sha512-tmE82DOsYRY+wsj/w4l72bW0iL+W0AO7Vlfy2VKzaIAfrpifu4ratWc9DxmO5Dw/xPMKDjZRGn3cT5b2wB/G+w==}
+  projen@0.99.47:
+    resolution: {integrity: sha512-qPGDtaJOdcIvFPOEF4t5YRIuTLHHD5qcwp+0Y/GJo8v2GTG9Yyy87EKig5J4DyskhuJ3tHuFI9gPWGw/9AppVA==}
     engines: {node: '>= 16.0.0'}
     hasBin: true
     peerDependencies:
@@ -3602,7 +3602,7 @@ snapshots:
 
   process-nextick-args@2.0.1: {}
 
-  projen@0.99.42(constructs@10.6.0):
+  projen@0.99.47(constructs@10.6.0):
     dependencies:
       constructs: 10.6.0
 
