@@ -48,6 +48,9 @@ const project = new typescript.TypeScriptProject({
   },
   autoApproveUpgrades: true,
   releaseFailureIssue: true,
+  githubOptions: {
+    dependencyReview: true,
+  },
 });
 
 project.postCompileTask.exec('ncc', {
