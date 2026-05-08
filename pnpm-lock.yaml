@@ -23,7 +23,7 @@ importers:
         version: 7.20.5
       '@types/node':
         specifier: ^20
-        version: 20.19.39
+        version: 20.19.40
       '@typescript-eslint/eslint-plugin':
         specifier: ^8
         version: 8.59.2(@typescript-eslint/parser@8.59.2(eslint@9.39.4)(typescript@5.9.3))(eslint@9.39.4)(typescript@5.9.3)
@@ -49,11 +49,11 @@ importers:
         specifier: ^2.32.0
         version: 2.32.0(@typescript-eslint/parser@8.59.2(eslint@9.39.4)(typescript@5.9.3))(eslint-import-resolver-typescript@3.10.1)(eslint@9.39.4)
       projen:
-        specifier: ^0.99.53
-        version: 0.99.53(constructs@10.6.0)
+        specifier: ^0.99.57
+        version: 0.99.57(constructs@10.6.0)
       ts-node:
         specifier: ^10.9.2
-        version: 10.9.2(@types/node@20.19.39)(typescript@5.9.3)
+        version: 10.9.2(@types/node@20.19.40)(typescript@5.9.3)
       typescript:
         specifier: ^5.9.3
         version: 5.9.3
@@ -274,8 +274,8 @@ packages:
   '@types/minimist@1.2.5':
     resolution: {integrity: sha512-hov8bUuiLiyFPGyFPE1lwWhmzYbirOXQNNo40+y3zow8aFVTeyn3VWL0VFFfdNddA8S4Vf0Tc062rzyNr7Paag==}
 
-  '@types/node@20.19.39':
-    resolution: {integrity: sha512-orrrD74MBUyK8jOAD/r0+lfa1I2MO6I+vAkmAWzMYbCcgrN4lCrmK52gRFQq/JRxfYPfonkr4b0jcY7Olqdqbw==}
+  '@types/node@20.19.40':
+    resolution: {integrity: sha512-xxx6M2IpSTnnKcR0cMvIiohkiCx20/oRPtWGbenFygKCGl3zqUzdNjQ/1V4solq1LU+dgv0nQzeGOuqkqZGg0Q==}
 
   '@types/normalize-package-data@2.4.4':
     resolution: {integrity: sha512-37i+OaWTh9qeK4LSHPsyRC7NahnGotNuZvjLSgcPzblpHB3rrCJxAOgI5gCdKm7coonsaX1Of0ILiTcnZjbfxA==}
@@ -1541,8 +1541,8 @@ packages:
   process-nextick-args@2.0.1:
     resolution: {integrity: sha512-3ouUOpQhtgrbOa17J7+uxOTpITYWaGP7/AhoR3+A+/1e9skrzelGi/dXzEYyvbxubEF6Wn2ypscTKiKJFFn1ag==}
 
-  projen@0.99.53:
-    resolution: {integrity: sha512-pIbvRFROGQWP+gClYbg36GL6j1nqlmxyiiNcsb2Rjnxhi3PinVbfG8zURXe3XKP/Z06CEzFuR2x4CFGRlQRFeQ==}
+  projen@0.99.57:
+    resolution: {integrity: sha512-1IWwvGnrI1lQ+dnYoAIdACZn0iXY2CqQaMlAVkicDNq7OYipQIMQccMWdnxPkwGj+AX7wS2bZqEULa++ujMXOw==}
     engines: {node: '>= 16.0.0'}
     hasBin: true
     peerDependencies:
@@ -2222,7 +2222,7 @@ snapshots:
 
   '@types/minimist@1.2.5': {}
 
-  '@types/node@20.19.39':
+  '@types/node@20.19.40':
     dependencies:
       undici-types: 6.21.0
 
@@ -3602,7 +3602,7 @@ snapshots:
 
   process-nextick-args@2.0.1: {}
 
-  projen@0.99.53(constructs@10.6.0):
+  projen@0.99.57(constructs@10.6.0):
     dependencies:
       constructs: 10.6.0
 
@@ -3893,14 +3893,14 @@ snapshots:
     dependencies:
       typescript: 5.9.3
 
-  ts-node@10.9.2(@types/node@20.19.39)(typescript@5.9.3):
+  ts-node@10.9.2(@types/node@20.19.40)(typescript@5.9.3):
     dependencies:
       '@cspotcode/source-map-support': 0.8.1
       '@tsconfig/node10': 1.0.12
       '@tsconfig/node12': 1.0.11
       '@tsconfig/node14': 1.0.3
       '@tsconfig/node16': 1.0.4
-      '@types/node': 20.19.39
+      '@types/node': 20.19.40
       acorn: 8.16.0
       acorn-walk: 8.3.5
       arg: 4.1.3
