@@ -49,8 +49,8 @@ importers:
         specifier: ^2.32.0
         version: 2.32.0(@typescript-eslint/parser@8.61.1(eslint@9.39.4)(typescript@5.9.3))(eslint-import-resolver-typescript@3.10.1)(eslint@9.39.4)
       projen:
-        specifier: ^0.99.74
-        version: 0.99.74(constructs@10.6.0)
+        specifier: ^0.99.76
+        version: 0.99.76(constructs@10.6.0)
       ts-node:
         specifier: ^10.9.2
         version: 10.9.2(@types/node@20.19.43)(typescript@5.9.3)
@@ -1541,8 +1541,8 @@ packages:
   process-nextick-args@2.0.1:
     resolution: {integrity: sha512-3ouUOpQhtgrbOa17J7+uxOTpITYWaGP7/AhoR3+A+/1e9skrzelGi/dXzEYyvbxubEF6Wn2ypscTKiKJFFn1ag==}
 
-  projen@0.99.74:
-    resolution: {integrity: sha512-K2QfAqJukE7Cxu1FqxQqFkU6ihA7NL48/BD+6M9pVurUqaTFE50KiuL4JDTobcp6ZfaHuOggdmrcuUDPaT1f5w==}
+  projen@0.99.76:
+    resolution: {integrity: sha512-WCExIFiuiqALWQd+1ZtP9yM/gV4C99kgqk33vtQmmWzETa/S3PjgGczMwLEF3NiN9fuSPjsMAHKaj9FkTuog5Q==}
     engines: {node: '>= 16.0.0'}
     hasBin: true
     peerDependencies:
@@ -1553,12 +1553,12 @@ packages:
       - chalk
       - comment-json
       - conventional-changelog-config-spec
+      - dax
       - fast-glob
       - fast-json-patch
       - ini
       - parse-conflict-json
       - semver
-      - shx
       - xmlbuilder2
       - yaml
       - yargs
@@ -3611,7 +3611,7 @@ snapshots:
 
   process-nextick-args@2.0.1: {}
 
-  projen@0.99.74(constructs@10.6.0):
+  projen@0.99.76(constructs@10.6.0):
     dependencies:
       constructs: 10.6.0
 
