@@ -1,6 +1,6 @@
 import { typescript, javascript, TextFile, YamlFile } from 'projen';
 
-const nodeVersion = '20';
+const nodeVersion = '24';
 const authorName = 'Amin Fazl';
 const majorVersion = 1;
 
