@@ -112,7 +112,7 @@ new YamlFile(project, 'action.yml', {
       },
     },
     runs: {
-      using: 'node20',
+      using: 'node24',
       main: 'action/index.js',
     },
   },

@@ -26,5 +26,5 @@ outputs:
   currently_deployed_commit:
     description: The commit sha that is currently deployed to the specified environment
 runs:
-  using: node20
+  using: node24
   main: action/index.js
