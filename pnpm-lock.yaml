@@ -23,7 +23,7 @@ importers:
         version: 7.20.5
       '@types/node':
         specifier: ^24
-        version: 24.19.1
+        version: 24.19.2
       '@typescript-eslint/eslint-plugin':
         specifier: ^8
         version: 8.71.1(@typescript-eslint/parser@8.71.1(eslint@9.39.5)(typescript@5.9.3))(eslint@9.39.5)(typescript@5.9.3)
@@ -49,11 +49,11 @@ importers:
         specifier: ^2.32.0
         version: 2.32.0(@typescript-eslint/parser@8.71.1(eslint@9.39.5)(typescript@5.9.3))(eslint-import-resolver-typescript@3.10.1)(eslint@9.39.5)
       projen:
-        specifier: ^0.104.2
-        version: 0.104.2(constructs@10.8.1)
+        specifier: ^0.104.3
+        version: 0.104.3(constructs@10.8.1)
       ts-node:
         specifier: ^10.9.2
-        version: 10.9.2(@types/node@24.19.1)(typescript@5.9.3)
+        version: 10.9.2(@types/node@24.19.2)(typescript@5.9.3)
       typescript:
         specifier: ^5.9.3
         version: 5.9.3
@@ -302,8 +302,8 @@ packages:
   '@types/json5@0.0.29':
     resolution: {integrity: sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==}
 
-  '@types/node@24.19.1':
-    resolution: {integrity: sha512-aS3/DG0oM05K0RIXXP+hKjinGG5IgSSVGzswZxW3O0sS3pH4/fycXundUC9XsszgKCk4gHXylTEK6hyFxVxnoQ==}
+  '@types/node@24.19.2':
+    resolution: {integrity: sha512-93d49wCWJkCyN87MxLpNN6KXPCwFw7bVUg79mGUV1OS40JGWwVCr8n61DXCSqz7CV6/VfPkb7xec7uP2M+QHWQ==}
 
   '@typescript-eslint/eslint-plugin@8.71.1':
     resolution: {integrity: sha512-nNlBf6HuotqMgZvSkWD5hNdemiBIxQ2NmrlgfcUIeZRs+BbakjscCQRq/Hb74EFVnFiSWWdL12JruqwBy3ERDw==}
@@ -1274,8 +1274,8 @@ packages:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
     engines: {node: '>= 0.8.0'}
 
-  projen@0.104.2:
-    resolution: {integrity: sha512-nmmHsPFR1q1Iz+z3u3H1idCZyL3RkefGM5JHIjimJJ34IZPHAj17Mh8G/MUrN7aeNpacMCDsfm5uRQqBiDPWTA==}
+  projen@0.104.3:
+    resolution: {integrity: sha512-eIrla55PZgFSeAY+zbzVhF1DJLsNOZ8nMsk4qyN0ptcGUfI9KIVwD3fLgSfzaVLFJ5o30HURr8pnFzavquScqg==}
     engines: {node: '>= 16.0.0'}
     hasBin: true
     peerDependencies:
@@ -1851,7 +1851,7 @@ snapshots:
 
   '@types/json5@0.0.29': {}
 
-  '@types/node@24.19.1':
+  '@types/node@24.19.2':
     dependencies:
       undici-types: 7.24.6
 
@@ -2936,7 +2936,7 @@ snapshots:
 
   prelude-ls@1.2.1: {}
 
-  projen@0.104.2(constructs@10.8.1):
+  projen@0.104.3(constructs@10.8.1):
     dependencies:
       constructs: 10.8.1
 
@@ -3126,14 +3126,14 @@ snapshots:
     dependencies:
       typescript: 5.9.3
 
-  ts-node@10.9.2(@types/node@24.19.1)(typescript@5.9.3):
+  ts-node@10.9.2(@types/node@24.19.2)(typescript@5.9.3):
     dependencies:
       '@cspotcode/source-map-support': 0.8.1
       '@tsconfig/node10': 1.0.12
       '@tsconfig/node12': 1.0.11
       '@tsconfig/node14': 1.0.3
       '@tsconfig/node16': 1.0.4
-      '@types/node': 24.19.1
+      '@types/node': 24.19.2
       acorn: 8.16.0
       acorn-walk: 8.3.5
       arg: 4.1.3
