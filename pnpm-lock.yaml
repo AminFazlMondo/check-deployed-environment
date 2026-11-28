@@ -49,8 +49,8 @@ importers:
         specifier: ^2.32.0
         version: 2.32.0(@typescript-eslint/parser@8.74.0(eslint@9.39.5)(typescript@5.9.3))(eslint-import-resolver-typescript@3.10.1)(eslint@9.39.5)
       projen:
-        specifier: ^0.105.13
-        version: 0.105.13(constructs@10.8.1)
+        specifier: ^0.105.14
+        version: 0.105.14(constructs@10.8.1)
       ts-node:
         specifier: ^10.9.2
         version: 10.9.2(@types/node@24.19.4)(typescript@5.9.3)
@@ -1309,8 +1309,8 @@ packages:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
     engines: {node: '>= 0.8.0'}
 
-  projen@0.105.13:
-    resolution: {integrity: sha512-v6M8wEUOnKAyn9C3VobnRtGT0+yKGb8EaB4W1E6e7xaWaMkGmldE3FQZ3JsbfWT4iDh+LiIhKW8C2XkhMrp9XQ==}
+  projen@0.105.14:
+    resolution: {integrity: sha512-mig3nAjFkc8yeX5QYW8Br61e6Lwu8g3nodauPztG6NkNfxGE3SE87yT4a9IapHHVstRvWrEtArsXHukHjRsudQ==}
     engines: {node: '>= 22.13.0'}
     hasBin: true
     peerDependencies:
@@ -3016,7 +3016,7 @@ snapshots:
 
   prelude-ls@1.2.1: {}
 
-  projen@0.105.13(constructs@10.8.1):
+  projen@0.105.14(constructs@10.8.1):
     dependencies:
       constructs: 10.8.1
 
